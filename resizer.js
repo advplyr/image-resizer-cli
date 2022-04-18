@@ -37,13 +37,32 @@ module.exports.run = async (options) => {
   const JPEG_QUALITY = options.quality || 90
 
   var images = getImagesInDir(INPUT_DIR)
+
+  if (!images.length) {
+    console.log(`\nNo images found in input dir ${INPUT_DIR}`)
+    return
+  }
+
   ensureDir(OUTPUT_DIR) // Make sure output directory is created
+
+  console.log(`\n=== START RESIZING ${images.length} IMAGES ===\n`)
 
   for (let i = 0; i < images.length; i++) {
     const _image = images[i]
-    var fileName = path.basename(_image, path.extname(_image))
-    var outputPath = path.join(OUTPUT_DIR, `${fileName}.jpg`).toLowerCase().split(' ').join('_')
+    var outputBaseName = path.basename(_image, path.extname(_image))
+
+    var outputFileName = `${outputBaseName}.jpg`
+    if (options.lower) {
+      outputFileName = outputFileName.toLowerCase()
+    }
+    if (options.despace) { // Remove spaces
+      outputFileName = outputFileName.split(' ').join('_')
+    }
+
+    var outputPath = path.join(OUTPUT_DIR, outputFileName)
     await sharp(_image).resize({ width: RESIZE_WIDTH }).jpeg({ quality: JPEG_QUALITY }).toFile(outputPath)
     console.log(`Resized image "${outputPath}"`)
   }
+
+  console.log(`\nAll done! Resized ${images.length} Images.`)
 }
