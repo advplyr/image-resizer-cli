@@ -1,6 +1,6 @@
 {
   "name": "image-resizer-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Resize & compress images in a directory using Sharp.",
   "main": "index.js",
   "scripts": {
