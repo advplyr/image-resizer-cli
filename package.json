@@ -1,5 +1,5 @@
 {
-  "name": "batch-image-resizer",
+  "name": "image-resizer-cli",
   "version": "1.0.0",
   "description": "Resize & compress images in a directory using Sharp.",
   "main": "index.js",
@@ -7,11 +7,11 @@
     "start": "node index"
   },
   "bin": {
-    "batch-image-resizer": "index.js"
+    "image-resizer-cli": "index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/advplyr/batch-image-resizer.git"
+    "url": "https://github.com/advplyr/image-resizer-cli.git"
   },
   "author": "advplyr",
   "license": "ISC",
